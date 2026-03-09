@@ -1,67 +1,35 @@
-import { useEditorStore } from '@/store/editorStore';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { Save, RotateCcw, Building2 } from 'lucide-react';
-import { useState } from 'react';
+import { useTenant, useIsDirty, useEditorActions } from "@/hooks/useEditorSelectors";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Save, Undo } from "lucide-react";
 
 export function Header() {
-  const { tenant, isDirty, saveChanges, resetChanges } = useEditorStore();
-  const [isSaving, setIsSaving] = useState(false);
-
-  const handleSave = async () => {
-    setIsSaving(true);
-    try {
-      await saveChanges();
-    } finally {
-      setIsSaving(false);
-    }
-  };
+  const tenant = useTenant();
+  const isDirty = useIsDirty();
+  const { saveChanges, resetChanges } = useEditorActions();
 
   return (
-    <header className="flex h-14 items-center gap-3 border-b bg-background px-4">
-      <div className="flex items-center gap-2">
-        <Building2 className="h-5 w-5 text-primary" />
-        <span className="font-semibold text-sm">Page Editor</span>
-      </div>
-
-      <Separator orientation="vertical" className="h-5" />
-
-      {tenant && (
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-muted-foreground">{tenant.name}</span>
-          <Badge variant="outline" className="text-xs">
-            {tenant.domain}
-          </Badge>
-        </div>
-      )}
-
-      <div className="ml-auto flex items-center gap-2">
+    <header className="h-14 border-b flex items-center justify-between px-4 bg-background">
+      <div className="flex items-center gap-4">
+        <h1 className="font-bold text-lg">Page Editor</h1>
+        {tenant && (
+          <Badge variant="outline">{tenant.name}</Badge>
+        )}
         {isDirty && (
-          <Badge variant="secondary" className="text-xs">
-            Cambios sin guardar
+          <Badge variant="secondary" className="bg-yellow-100 text-yellow-800">
+            Sin guardar
           </Badge>
         )}
+      </div>
 
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={resetChanges}
-          disabled={!isDirty || isSaving}
-          className="gap-1.5"
-        >
-          <RotateCcw className="h-3.5 w-3.5" />
+      <div className="flex items-center gap-2">
+        <Button variant="outline" size="sm" disabled={!isDirty} onClick={resetChanges}>
+          <Undo className="h-4 w-4 mr-2" />
           Deshacer
         </Button>
-
-        <Button
-          size="sm"
-          onClick={handleSave}
-          disabled={!isDirty || isSaving}
-          className="gap-1.5"
-        >
-          <Save className="h-3.5 w-3.5" />
-          {isSaving ? 'Guardando...' : 'Guardar'}
+        <Button size="sm" disabled={!isDirty} onClick={saveChanges}>
+          <Save className="h-4 w-4 mr-2" />
+          Guardar
         </Button>
       </div>
     </header>

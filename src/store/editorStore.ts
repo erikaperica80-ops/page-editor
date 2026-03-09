@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { subscribeWithSelector } from 'zustand/middleware';
 import { TenantConfig, Section, ComponentNode } from '@/types/schema';
 
 interface EditorState {
@@ -8,154 +9,167 @@ interface EditorState {
   expandedSections: string[];
   isDirty: boolean;
   previewUrl: string;
+}
 
+interface EditorActions {
   setTenant: (tenant: TenantConfig) => void;
   selectSection: (sectionId: string | null) => void;
   selectComponent: (componentId: string | null) => void;
   toggleSectionExpanded: (sectionId: string) => void;
-
-  updateComponentValue: (componentId: string, value: unknown) => void;
+  updateComponentValue: (componentId: string, value: any) => void;
   updateComponentVisibility: (componentId: string, visible: boolean) => void;
   updateSectionVisibility: (sectionId: string, visible: boolean) => void;
   updateSectionOrder: (sections: Section[]) => void;
-
   setPreviewUrl: (url: string) => void;
   resetChanges: () => void;
   saveChanges: () => Promise<void>;
 }
 
-export const useEditorStore = create<EditorState>((set, get) => ({
+type EditorStore = EditorState & EditorActions;
+
+const initialState: EditorState = {
   tenant: null,
   selectedSectionId: null,
   selectedComponentId: null,
   expandedSections: [],
   isDirty: false,
   previewUrl: 'http://localhost:4321',
+};
 
-  setTenant: (tenant) => set({ tenant, isDirty: false }),
+export const useEditorStore = create<EditorStore>()(
+  subscribeWithSelector((set, get) => ({
+    ...initialState,
 
-  selectSection: (sectionId) => set({
-    selectedSectionId: sectionId,
-    selectedComponentId: null
-  }),
+    setTenant: (tenant) => set({ tenant, isDirty: false }),
 
-  selectComponent: (componentId) => set({ selectedComponentId: componentId }),
+    selectSection: (sectionId) => set({ 
+      selectedSectionId: sectionId,
+      selectedComponentId: null 
+    }),
 
-  toggleSectionExpanded: (sectionId) => set((state) => ({
-    expandedSections: state.expandedSections.includes(sectionId)
-      ? state.expandedSections.filter(id => id !== sectionId)
-      : [...state.expandedSections, sectionId]
-  })),
+    selectComponent: (componentId) => set({ selectedComponentId: componentId }),
 
-  updateComponentValue: (componentId, value) => set((state) => {
-    if (!state.tenant) return state;
-
-    const updateComponent = (components: ComponentNode[]): ComponentNode[] => {
-      return components.map(comp => {
-        if (comp.id === componentId) {
-          return { ...comp, value: value as ComponentNode['value'] };
-        }
-        if (comp.children) {
-          return { ...comp, children: updateComponent(comp.children) };
-        }
-        return comp;
+    toggleSectionExpanded: (sectionId) => {
+      const { expandedSections } = get();
+      set({
+        expandedSections: expandedSections.includes(sectionId)
+          ? expandedSections.filter(id => id !== sectionId)
+          : [...expandedSections, sectionId]
       });
-    };
+    },
 
-    const updatedSections = state.tenant.pageSchema.sections.map(section => ({
-      ...section,
-      components: updateComponent(section.components)
-    }));
+    updateComponentValue: (componentId, value) => {
+      const { tenant } = get();
+      if (!tenant) return;
 
-    return {
-      tenant: {
-        ...state.tenant,
-        pageSchema: {
-          ...state.tenant.pageSchema,
-          sections: updatedSections
-        }
-      },
-      isDirty: true
-    };
-  }),
+      const updateComponent = (components: ComponentNode[]): ComponentNode[] => {
+        return components.map(comp => {
+          if (comp.id === componentId) {
+            return { ...comp, value };
+          }
+          if (comp.children) {
+            return { ...comp, children: updateComponent(comp.children) };
+          }
+          return comp;
+        });
+      };
 
-  updateComponentVisibility: (componentId, visible) => set((state) => {
-    if (!state.tenant) return state;
+      const updatedSections = tenant.pageSchema.sections.map(section => ({
+        ...section,
+        components: updateComponent(section.components)
+      }));
 
-    const updateComponent = (components: ComponentNode[]): ComponentNode[] => {
-      return components.map(comp => {
-        if (comp.id === componentId) {
-          return { ...comp, visible };
-        }
-        if (comp.children) {
-          return { ...comp, children: updateComponent(comp.children) };
-        }
-        return comp;
+      set({
+        tenant: {
+          ...tenant,
+          pageSchema: {
+            ...tenant.pageSchema,
+            sections: updatedSections
+          }
+        },
+        isDirty: true
       });
-    };
+    },
 
-    const updatedSections = state.tenant.pageSchema.sections.map(section => ({
-      ...section,
-      components: updateComponent(section.components)
-    }));
+    updateComponentVisibility: (componentId, visible) => {
+      const { tenant } = get();
+      if (!tenant) return;
 
-    return {
-      tenant: {
-        ...state.tenant,
-        pageSchema: {
-          ...state.tenant.pageSchema,
-          sections: updatedSections
-        }
-      },
-      isDirty: true
-    };
-  }),
+      const updateComponent = (components: ComponentNode[]): ComponentNode[] => {
+        return components.map(comp => {
+          if (comp.id === componentId) {
+            return { ...comp, visible };
+          }
+          if (comp.children) {
+            return { ...comp, children: updateComponent(comp.children) };
+          }
+          return comp;
+        });
+      };
 
-  updateSectionVisibility: (sectionId, visible) => set((state) => {
-    if (!state.tenant) return state;
+      const updatedSections = tenant.pageSchema.sections.map(section => ({
+        ...section,
+        components: updateComponent(section.components)
+      }));
 
-    const updatedSections = state.tenant.pageSchema.sections.map(section =>
-      section.id === sectionId ? { ...section, visible } : section
-    );
+      set({
+        tenant: {
+          ...tenant,
+          pageSchema: {
+            ...tenant.pageSchema,
+            sections: updatedSections
+          }
+        },
+        isDirty: true
+      });
+    },
 
-    return {
-      tenant: {
-        ...state.tenant,
-        pageSchema: {
-          ...state.tenant.pageSchema,
-          sections: updatedSections
-        }
-      },
-      isDirty: true
-    };
-  }),
+    updateSectionVisibility: (sectionId, visible) => {
+      const { tenant } = get();
+      if (!tenant) return;
 
-  updateSectionOrder: (sections) => set((state) => {
-    if (!state.tenant) return state;
+      const updatedSections = tenant.pageSchema.sections.map(section => 
+        section.id === sectionId ? { ...section, visible } : section
+      );
 
-    return {
-      tenant: {
-        ...state.tenant,
-        pageSchema: {
-          ...state.tenant.pageSchema,
-          sections
-        }
-      },
-      isDirty: true
-    };
-  }),
+      set({
+        tenant: {
+          ...tenant,
+          pageSchema: {
+            ...tenant.pageSchema,
+            sections: updatedSections
+          }
+        },
+        isDirty: true
+      });
+    },
 
-  setPreviewUrl: (url) => set({ previewUrl: url }),
+    updateSectionOrder: (sections) => {
+      const { tenant } = get();
+      if (!tenant) return;
 
-  resetChanges: () => set((_state) => ({
-    isDirty: false
-  })),
+      set({
+        tenant: {
+          ...tenant,
+          pageSchema: {
+            ...tenant.pageSchema,
+            sections
+          }
+        },
+        isDirty: true
+      });
+    },
 
-  saveChanges: async () => {
-    const { tenant } = get();
-    if (!tenant) return;
-    console.log('Saving:', tenant);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    set({ isDirty: false });
-  }
-}));
+    setPreviewUrl: (url) => set({ previewUrl: url }),
+
+    resetChanges: () => set({ isDirty: false }),
+
+    saveChanges: async () => {
+      const { tenant } = get();
+      if (!tenant) return;
+      console.log('Saving:', tenant);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      set({ isDirty: false });
+    }
+  }))
+);

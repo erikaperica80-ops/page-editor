@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { EditorLayout } from './components/editor/EditorLayout';
-import { useEditorStore } from './store/editorStore';
+import { useEditorActions } from './hooks/useEditorSelectors';
 import tenantsData from './data/tenants.json';
 import { TenantConfig } from './types/schema';
 
 function App() {
-  const { setTenant } = useEditorStore();
+  const { setTenant } = useEditorActions();
 
   useEffect(() => {
     const tenants = tenantsData as unknown as TenantConfig[];
