@@ -1,0 +1,786 @@
+[
+  {
+    "id": "tenant-default",
+    "domain": "default",
+    "name": "Mi Empresa",
+    "template": "landing-v1",
+    "seo": {
+      "title": "Mi Empresa - Soluciones Profesionales",
+      "description": "Ofrecemos soluciones profesionales de alta calidad para tu negocio.",
+      "keywords": ["empresa", "servicios", "profesional", "calidad"],
+      "ogTitle": "Mi Empresa - Soluciones Profesionales",
+      "ogDescription": "Ofrecemos soluciones profesionales de alta calidad para tu negocio.",
+      "ogImage": "/images/og-image.jpg",
+      "ogType": "website",
+      "twitterCard": "summary_large_image",
+      "twitterSite": "@miempresa",
+      "canonicalUrl": "https://miempresa.com",
+      "robots": "index, follow",
+      "author": "Mi Empresa",
+      "language": "es",
+      "locale": "es_ES",
+      "structuredData": {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Mi Empresa",
+        "url": "https://miempresa.com"
+      }
+    },
+    "theme": {
+      "primaryColor": "#1e3a5f",
+      "secondaryColor": "#2d6a9f",
+      "accentColor": "#f59e0b",
+      "backgroundColor": "#ffffff",
+      "textColor": "#1f2937",
+      "fontFamily": "Inter, sans-serif",
+      "fontFamilyHeading": "Poppins, sans-serif",
+      "googleFontsUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+    },
+    "branding": {
+      "logo": "/images/logo.svg",
+      "logoAlt": "Mi Empresa Logo",
+      "logoDark": "/images/logo-dark.svg",
+      "favicon": "/favicon.ico",
+      "appleTouchIcon": "/apple-touch-icon.png"
+    },
+    "contact": {
+      "email": "info@miempresa.com",
+      "phone": "+34 91 123 45 67",
+      "whatsapp": "+34 600 123 456",
+      "address": "Calle Principal 123, 28001 Madrid, España",
+      "socialMedia": {
+        "facebook": "https://facebook.com/miempresa",
+        "twitter": "https://twitter.com/miempresa",
+        "instagram": "https://instagram.com/miempresa",
+        "linkedin": "https://linkedin.com/company/miempresa"
+      }
+    },
+    "pageSchema": {
+      "id": "page-home-default",
+      "slug": "/",
+      "templateId": "landing-v1",
+      "tenantId": "tenant-default",
+      "sections": [
+        {
+          "id": "section-navbar",
+          "type": "navbar",
+          "order": 1,
+          "visible": true,
+          "label": "Navegación",
+          "components": [
+            {
+              "id": "navbar-logo",
+              "type": "image",
+              "order": 1,
+              "visible": true,
+              "label": "Logo",
+              "path": "navbar.logo",
+              "editable": true,
+              "value": { "src": "/images/logo.svg", "alt": "Mi Empresa", "width": 150, "height": 40 }
+            },
+            {
+              "id": "navbar-menu",
+              "type": "nav-links",
+              "order": 2,
+              "visible": true,
+              "label": "Menú de navegación",
+              "path": "navbar.menu",
+              "editable": true,
+              "children": [
+                {
+                  "id": "nav-link-1",
+                  "type": "link",
+                  "order": 1,
+                  "visible": true,
+                  "label": "Inicio",
+                  "path": "navbar.menu.0",
+                  "editable": true,
+                  "value": "Inicio",
+                  "link": { "href": "#hero", "target": "_self" }
+                },
+                {
+                  "id": "nav-link-2",
+                  "type": "link",
+                  "order": 2,
+                  "visible": true,
+                  "label": "Servicios",
+                  "path": "navbar.menu.1",
+                  "editable": true,
+                  "value": "Servicios",
+                  "link": { "href": "#services", "target": "_self" }
+                },
+                {
+                  "id": "nav-link-3",
+                  "type": "link",
+                  "order": 3,
+                  "visible": true,
+                  "label": "Nosotros",
+                  "path": "navbar.menu.2",
+                  "editable": true,
+                  "value": "Nosotros",
+                  "link": { "href": "#about", "target": "_self" }
+                },
+                {
+                  "id": "nav-link-4",
+                  "type": "link",
+                  "order": 4,
+                  "visible": true,
+                  "label": "Contacto",
+                  "path": "navbar.menu.3",
+                  "editable": true,
+                  "value": "Contacto",
+                  "link": { "href": "#contact", "target": "_self" }
+                }
+              ]
+            },
+            {
+              "id": "navbar-cta",
+              "type": "button",
+              "order": 3,
+              "visible": true,
+              "label": "Botón CTA",
+              "path": "navbar.cta",
+              "editable": true,
+              "value": "Contáctanos",
+              "link": { "href": "#contact", "target": "_self" }
+            }
+          ]
+        },
+        {
+          "id": "section-hero",
+          "type": "hero",
+          "order": 2,
+          "visible": true,
+          "label": "Hero Principal",
+          "components": [
+            {
+              "id": "hero-badge",
+              "type": "text",
+              "order": 1,
+              "visible": true,
+              "label": "Badge / Etiqueta",
+              "path": "hero.badge",
+              "editable": true,
+              "value": "✨ Nuevo en 2026",
+              "typography": {
+                "fontSize": "sm",
+                "fontWeight": "medium",
+                "textAlign": "center",
+                "textTransform": "uppercase",
+                "letterSpacing": "wider"
+              }
+            },
+            {
+              "id": "hero-title",
+              "type": "heading",
+              "order": 2,
+              "visible": true,
+              "label": "Título principal",
+              "path": "hero.title",
+              "editable": true,
+              "value": "Soluciones Profesionales para tu Negocio",
+              "typography": {
+                "fontSize": "5xl",
+                "fontWeight": "bold",
+                "textAlign": "center",
+                "fontFamily": "secondary",
+                "lineHeight": "tight"
+              }
+            },
+            {
+              "id": "hero-subtitle",
+              "type": "paragraph",
+              "order": 3,
+              "visible": true,
+              "label": "Subtítulo",
+              "path": "hero.subtitle",
+              "editable": true,
+              "value": "Transformamos ideas en resultados reales. Con más de 10 años de experiencia, ayudamos a empresas a crecer y destacar en el mercado digital.",
+              "typography": {
+                "fontSize": "xl",
+                "fontWeight": "normal",
+                "textAlign": "center",
+                "lineHeight": "relaxed"
+              }
+            },
+            {
+              "id": "hero-cta-primary",
+              "type": "button",
+              "order": 4,
+              "visible": true,
+              "label": "Botón principal",
+              "path": "hero.ctaPrimary",
+              "editable": true,
+              "value": "Comenzar ahora",
+              "link": { "href": "#contact", "target": "_self", "ariaLabel": "Ir a contacto" }
+            },
+            {
+              "id": "hero-cta-secondary",
+              "type": "button",
+              "order": 5,
+              "visible": true,
+              "label": "Botón secundario",
+              "path": "hero.ctaSecondary",
+              "editable": true,
+              "value": "Ver servicios",
+              "link": { "href": "#services", "target": "_self" }
+            },
+            {
+              "id": "hero-image",
+              "type": "image",
+              "order": 6,
+              "visible": true,
+              "label": "Imagen hero",
+              "path": "hero.image",
+              "editable": true,
+              "value": {
+                "src": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800",
+                "alt": "Equipo de profesionales trabajando",
+                "width": 800,
+                "height": 600
+              }
+            }
+          ]
+        },
+        {
+          "id": "section-services",
+          "type": "services",
+          "order": 3,
+          "visible": true,
+          "label": "Servicios",
+          "components": [
+            {
+              "id": "services-title",
+              "type": "heading",
+              "order": 1,
+              "visible": true,
+              "label": "Título de sección",
+              "path": "services.title",
+              "editable": true,
+              "value": "Nuestros Servicios",
+              "typography": {
+                "fontSize": "3xl",
+                "fontWeight": "bold",
+                "textAlign": "center",
+                "fontFamily": "secondary"
+              }
+            },
+            {
+              "id": "services-subtitle",
+              "type": "paragraph",
+              "order": 2,
+              "visible": true,
+              "label": "Subtítulo de sección",
+              "path": "services.subtitle",
+              "editable": true,
+              "value": "Ofrecemos una amplia gama de servicios diseñados para impulsar tu negocio.",
+              "typography": {
+                "fontSize": "lg",
+                "fontWeight": "normal",
+                "textAlign": "center"
+              }
+            },
+            {
+              "id": "services-list",
+              "type": "card-grid",
+              "order": 3,
+              "visible": true,
+              "label": "Lista de servicios",
+              "path": "services.items",
+              "editable": true,
+              "repeatable": true,
+              "minItems": 1,
+              "maxItems": 6,
+              "children": [
+                {
+                  "id": "service-1",
+                  "type": "service-card",
+                  "order": 1,
+                  "visible": true,
+                  "label": "Consultoría Estratégica",
+                  "path": "services.items.0",
+                  "editable": true,
+                  "children": [
+                    {
+                      "id": "service-1-icon",
+                      "type": "icon",
+                      "order": 1,
+                      "visible": true,
+                      "label": "Icono",
+                      "path": "services.items.0.icon",
+                      "editable": true,
+                      "value": "briefcase"
+                    },
+                    {
+                      "id": "service-1-title",
+                      "type": "heading",
+                      "order": 2,
+                      "visible": true,
+                      "label": "Título del servicio",
+                      "path": "services.items.0.title",
+                      "editable": true,
+                      "value": "Consultoría Estratégica"
+                    },
+                    {
+                      "id": "service-1-desc",
+                      "type": "paragraph",
+                      "order": 3,
+                      "visible": true,
+                      "label": "Descripción",
+                      "path": "services.items.0.description",
+                      "editable": true,
+                      "value": "Desarrollamos estrategias personalizadas para alcanzar tus objetivos de negocio."
+                    }
+                  ]
+                },
+                {
+                  "id": "service-2",
+                  "type": "service-card",
+                  "order": 2,
+                  "visible": true,
+                  "label": "Desarrollo Web",
+                  "path": "services.items.1",
+                  "editable": true,
+                  "children": [
+                    {
+                      "id": "service-2-icon",
+                      "type": "icon",
+                      "order": 1,
+                      "visible": true,
+                      "label": "Icono",
+                      "path": "services.items.1.icon",
+                      "editable": true,
+                      "value": "code"
+                    },
+                    {
+                      "id": "service-2-title",
+                      "type": "heading",
+                      "order": 2,
+                      "visible": true,
+                      "label": "Título del servicio",
+                      "path": "services.items.1.title",
+                      "editable": true,
+                      "value": "Desarrollo Web"
+                    },
+                    {
+                      "id": "service-2-desc",
+                      "type": "paragraph",
+                      "order": 3,
+                      "visible": true,
+                      "label": "Descripción",
+                      "path": "services.items.1.description",
+                      "editable": true,
+                      "value": "Creamos sitios web modernos, rápidos y optimizados para convertir visitantes en clientes."
+                    }
+                  ]
+                },
+                {
+                  "id": "service-3",
+                  "type": "service-card",
+                  "order": 3,
+                  "visible": true,
+                  "label": "Marketing Digital",
+                  "path": "services.items.2",
+                  "editable": true,
+                  "children": [
+                    {
+                      "id": "service-3-icon",
+                      "type": "icon",
+                      "order": 1,
+                      "visible": true,
+                      "label": "Icono",
+                      "path": "services.items.2.icon",
+                      "editable": true,
+                      "value": "trending-up"
+                    },
+                    {
+                      "id": "service-3-title",
+                      "type": "heading",
+                      "order": 2,
+                      "visible": true,
+                      "label": "Título del servicio",
+                      "path": "services.items.2.title",
+                      "editable": true,
+                      "value": "Marketing Digital"
+                    },
+                    {
+                      "id": "service-3-desc",
+                      "type": "paragraph",
+                      "order": 3,
+                      "visible": true,
+                      "label": "Descripción",
+                      "path": "services.items.2.description",
+                      "editable": true,
+                      "value": "Aumentamos tu presencia digital con estrategias SEO, SEM y redes sociales efectivas."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "section-about",
+          "type": "about",
+          "order": 4,
+          "visible": true,
+          "label": "Nosotros",
+          "components": [
+            {
+              "id": "about-image",
+              "type": "image",
+              "order": 1,
+              "visible": true,
+              "label": "Imagen de equipo",
+              "path": "about.image",
+              "editable": true,
+              "value": {
+                "src": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600",
+                "alt": "Nuestro equipo",
+                "width": 600,
+                "height": 400
+              }
+            },
+            {
+              "id": "about-badge",
+              "type": "text",
+              "order": 2,
+              "visible": true,
+              "label": "Etiqueta",
+              "path": "about.badge",
+              "editable": true,
+              "value": "Sobre nosotros"
+            },
+            {
+              "id": "about-title",
+              "type": "heading",
+              "order": 3,
+              "visible": true,
+              "label": "Título",
+              "path": "about.title",
+              "editable": true,
+              "value": "Más de 10 años transformando negocios",
+              "typography": {
+                "fontSize": "3xl",
+                "fontWeight": "bold",
+                "fontFamily": "secondary"
+              }
+            },
+            {
+              "id": "about-description",
+              "type": "paragraph",
+              "order": 4,
+              "visible": true,
+              "label": "Descripción",
+              "path": "about.description",
+              "editable": true,
+              "value": "Somos un equipo apasionado de profesionales dedicados a ayudar a las empresas a alcanzar su máximo potencial. Combinamos experiencia técnica con creatividad e innovación para ofrecer soluciones únicas."
+            },
+            {
+              "id": "about-stats",
+              "type": "stats-grid",
+              "order": 5,
+              "visible": true,
+              "label": "Estadísticas",
+              "path": "about.stats",
+              "editable": true,
+              "children": [
+                {
+                  "id": "stat-1",
+                  "type": "stat",
+                  "order": 1,
+                  "visible": true,
+                  "label": "Clientes",
+                  "path": "about.stats.0",
+                  "editable": true,
+                  "children": [
+                    { "id": "stat-1-value", "type": "text", "order": 1, "visible": true, "label": "Valor", "path": "about.stats.0.value", "editable": true, "value": "500+" },
+                    { "id": "stat-1-label", "type": "text", "order": 2, "visible": true, "label": "Etiqueta", "path": "about.stats.0.label", "editable": true, "value": "Clientes satisfechos" }
+                  ]
+                },
+                {
+                  "id": "stat-2",
+                  "type": "stat",
+                  "order": 2,
+                  "visible": true,
+                  "label": "Proyectos",
+                  "path": "about.stats.1",
+                  "editable": true,
+                  "children": [
+                    { "id": "stat-2-value", "type": "text", "order": 1, "visible": true, "label": "Valor", "path": "about.stats.1.value", "editable": true, "value": "1200+" },
+                    { "id": "stat-2-label", "type": "text", "order": 2, "visible": true, "label": "Etiqueta", "path": "about.stats.1.label", "editable": true, "value": "Proyectos completados" }
+                  ]
+                },
+                {
+                  "id": "stat-3",
+                  "type": "stat",
+                  "order": 3,
+                  "visible": true,
+                  "label": "Años",
+                  "path": "about.stats.2",
+                  "editable": true,
+                  "children": [
+                    { "id": "stat-3-value", "type": "text", "order": 1, "visible": true, "label": "Valor", "path": "about.stats.2.value", "editable": true, "value": "10+" },
+                    { "id": "stat-3-label", "type": "text", "order": 2, "visible": true, "label": "Etiqueta", "path": "about.stats.2.label", "editable": true, "value": "Años de experiencia" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "section-testimonials",
+          "type": "testimonials",
+          "order": 5,
+          "visible": true,
+          "label": "Testimonios",
+          "components": [
+            {
+              "id": "testimonials-title",
+              "type": "heading",
+              "order": 1,
+              "visible": true,
+              "label": "Título",
+              "path": "testimonials.title",
+              "editable": true,
+              "value": "Lo que dicen nuestros clientes",
+              "typography": {
+                "fontSize": "3xl",
+                "fontWeight": "bold",
+                "textAlign": "center",
+                "fontFamily": "secondary"
+              }
+            },
+            {
+              "id": "testimonials-list",
+              "type": "testimonials-grid",
+              "order": 2,
+              "visible": true,
+              "label": "Lista de testimonios",
+              "path": "testimonials.items",
+              "editable": true,
+              "repeatable": true,
+              "minItems": 1,
+              "maxItems": 6,
+              "children": [
+                {
+                  "id": "testimonial-1",
+                  "type": "testimonial-card",
+                  "order": 1,
+                  "visible": true,
+                  "label": "Testimonio 1",
+                  "path": "testimonials.items.0",
+                  "editable": true,
+                  "children": [
+                    { "id": "t1-text", "type": "paragraph", "order": 1, "visible": true, "label": "Texto", "path": "testimonials.items.0.text", "editable": true, "value": "Excelente servicio y resultados increíbles. Superaron todas nuestras expectativas." },
+                    { "id": "t1-author", "type": "text", "order": 2, "visible": true, "label": "Autor", "path": "testimonials.items.0.author", "editable": true, "value": "María García" },
+                    { "id": "t1-role", "type": "text", "order": 3, "visible": true, "label": "Cargo", "path": "testimonials.items.0.role", "editable": true, "value": "CEO, TechStart" },
+                    { "id": "t1-avatar", "type": "image", "order": 4, "visible": true, "label": "Avatar", "path": "testimonials.items.0.avatar", "editable": true, "value": { "src": "https://i.pravatar.cc/60?img=1", "alt": "María García", "width": 60, "height": 60 } }
+                  ]
+                },
+                {
+                  "id": "testimonial-2",
+                  "type": "testimonial-card",
+                  "order": 2,
+                  "visible": true,
+                  "label": "Testimonio 2",
+                  "path": "testimonials.items.1",
+                  "editable": true,
+                  "children": [
+                    { "id": "t2-text", "type": "paragraph", "order": 1, "visible": true, "label": "Texto", "path": "testimonials.items.1.text", "editable": true, "value": "El equipo es muy profesional y entregaron el proyecto a tiempo y dentro del presupuesto." },
+                    { "id": "t2-author", "type": "text", "order": 2, "visible": true, "label": "Autor", "path": "testimonials.items.1.author", "editable": true, "value": "Carlos López" },
+                    { "id": "t2-role", "type": "text", "order": 3, "visible": true, "label": "Cargo", "path": "testimonials.items.1.role", "editable": true, "value": "Director, InnovaGroup" },
+                    { "id": "t2-avatar", "type": "image", "order": 4, "visible": true, "label": "Avatar", "path": "testimonials.items.1.avatar", "editable": true, "value": { "src": "https://i.pravatar.cc/60?img=2", "alt": "Carlos López", "width": 60, "height": 60 } }
+                  ]
+                },
+                {
+                  "id": "testimonial-3",
+                  "type": "testimonial-card",
+                  "order": 3,
+                  "visible": true,
+                  "label": "Testimonio 3",
+                  "path": "testimonials.items.2",
+                  "editable": true,
+                  "children": [
+                    { "id": "t3-text", "type": "paragraph", "order": 1, "visible": true, "label": "Texto", "path": "testimonials.items.2.text", "editable": true, "value": "Transformaron completamente nuestra presencia digital. Los resultados hablan por sí solos." },
+                    { "id": "t3-author", "type": "text", "order": 2, "visible": true, "label": "Autor", "path": "testimonials.items.2.author", "editable": true, "value": "Ana Martínez" },
+                    { "id": "t3-role", "type": "text", "order": 3, "visible": true, "label": "Cargo", "path": "testimonials.items.2.role", "editable": true, "value": "Fundadora, CreativeHub" },
+                    { "id": "t3-avatar", "type": "image", "order": 4, "visible": true, "label": "Avatar", "path": "testimonials.items.2.avatar", "editable": true, "value": { "src": "https://i.pravatar.cc/60?img=5", "alt": "Ana Martínez", "width": 60, "height": 60 } }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "section-contact",
+          "type": "contact",
+          "order": 6,
+          "visible": true,
+          "label": "Contacto",
+          "components": [
+            {
+              "id": "contact-title",
+              "type": "heading",
+              "order": 1,
+              "visible": true,
+              "label": "Título",
+              "path": "contact.title",
+              "editable": true,
+              "value": "¿Listo para empezar?",
+              "typography": {
+                "fontSize": "3xl",
+                "fontWeight": "bold",
+                "textAlign": "center",
+                "fontFamily": "secondary"
+              }
+            },
+            {
+              "id": "contact-subtitle",
+              "type": "paragraph",
+              "order": 2,
+              "visible": true,
+              "label": "Subtítulo",
+              "path": "contact.subtitle",
+              "editable": true,
+              "value": "Contáctanos hoy y descubre cómo podemos ayudar a tu empresa a crecer.",
+              "typography": {
+                "fontSize": "lg",
+                "textAlign": "center"
+              }
+            },
+            {
+              "id": "contact-form-name",
+              "type": "input",
+              "order": 3,
+              "visible": true,
+              "label": "Campo nombre",
+              "path": "contact.form.name",
+              "editable": true,
+              "value": "Tu nombre completo",
+              "validation": {
+                "required": true,
+                "minLength": 2,
+                "maxLength": 100,
+                "errorMessage": "Por favor ingresa tu nombre"
+              }
+            },
+            {
+              "id": "contact-form-email",
+              "type": "input",
+              "order": 4,
+              "visible": true,
+              "label": "Campo email",
+              "path": "contact.form.email",
+              "editable": true,
+              "value": "tu@email.com",
+              "validation": {
+                "required": true,
+                "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+                "errorMessage": "Por favor ingresa un email válido"
+              }
+            },
+            {
+              "id": "contact-form-message",
+              "type": "textarea",
+              "order": 5,
+              "visible": true,
+              "label": "Campo mensaje",
+              "path": "contact.form.message",
+              "editable": true,
+              "value": "¿En qué podemos ayudarte?",
+              "validation": {
+                "required": true,
+                "minLength": 10,
+                "maxLength": 500,
+                "errorMessage": "Por favor escribe tu mensaje"
+              }
+            },
+            {
+              "id": "contact-form-submit",
+              "type": "button",
+              "order": 6,
+              "visible": true,
+              "label": "Botón enviar",
+              "path": "contact.form.submit",
+              "editable": true,
+              "value": "Enviar mensaje"
+            }
+          ]
+        },
+        {
+          "id": "section-footer",
+          "type": "footer",
+          "order": 7,
+          "visible": true,
+          "label": "Pie de página",
+          "components": [
+            {
+              "id": "footer-logo",
+              "type": "image",
+              "order": 1,
+              "visible": true,
+              "label": "Logo footer",
+              "path": "footer.logo",
+              "editable": true,
+              "value": { "src": "/images/logo-white.svg", "alt": "Mi Empresa", "width": 120, "height": 32 }
+            },
+            {
+              "id": "footer-description",
+              "type": "paragraph",
+              "order": 2,
+              "visible": true,
+              "label": "Descripción footer",
+              "path": "footer.description",
+              "editable": true,
+              "value": "Soluciones profesionales para hacer crecer tu negocio digital."
+            },
+            {
+              "id": "footer-links",
+              "type": "link-group",
+              "order": 3,
+              "visible": true,
+              "label": "Enlaces footer",
+              "path": "footer.links",
+              "editable": true,
+              "children": [
+                {
+                  "id": "footer-link-1",
+                  "type": "link",
+                  "order": 1,
+                  "visible": true,
+                  "label": "Política de Privacidad",
+                  "path": "footer.links.0",
+                  "editable": true,
+                  "value": "Política de Privacidad",
+                  "link": { "href": "/privacidad", "target": "_self" }
+                },
+                {
+                  "id": "footer-link-2",
+                  "type": "link",
+                  "order": 2,
+                  "visible": true,
+                  "label": "Términos de Servicio",
+                  "path": "footer.links.1",
+                  "editable": true,
+                  "value": "Términos de Servicio",
+                  "link": { "href": "/terminos", "target": "_self" }
+                }
+              ]
+            },
+            {
+              "id": "footer-copyright",
+              "type": "text",
+              "order": 4,
+              "visible": true,
+              "label": "Copyright",
+              "path": "footer.copyright",
+              "editable": true,
+              "value": "© 2026 Mi Empresa. Todos los derechos reservados."
+            }
+          ]
+        }
+      ]
+    }
+  }
+]
