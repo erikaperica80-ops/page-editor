@@ -3,6 +3,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SectionList } from "./SectionList";
 import { ComponentEditor } from "./ComponentEditor";
+import { StylesEditor } from "./StylesEditor";
+import { SettingsEditor } from "./SettingsEditor";
 import { Layers, Settings, Palette } from "lucide-react";
 
 export function Sidebar() {
@@ -39,7 +41,7 @@ export function Sidebar() {
           <ScrollArea className="h-full">
             <div className="p-4">
               {selectedComponentId ? (
-                <ComponentEditor />
+                <ComponentEditor componentId={selectedComponentId} />
               ) : (
                 <SectionList />
               )}
@@ -50,30 +52,7 @@ export function Sidebar() {
         <TabsContent value="styles" className="flex-1 m-0">
           <ScrollArea className="h-full">
             <div className="p-4">
-              <h3 className="font-semibold mb-4">Tema</h3>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div 
-                    className="w-8 h-8 rounded-full border"
-                    style={{ backgroundColor: tenant.theme.primaryColor }}
-                  />
-                  <span className="text-sm">Primary</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div 
-                    className="w-8 h-8 rounded-full border"
-                    style={{ backgroundColor: tenant.theme.secondaryColor }}
-                  />
-                  <span className="text-sm">Secondary</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div 
-                    className="w-8 h-8 rounded-full border"
-                    style={{ backgroundColor: tenant.theme.accentColor }}
-                  />
-                  <span className="text-sm">Accent</span>
-                </div>
-              </div>
+              <StylesEditor />
             </div>
           </ScrollArea>
         </TabsContent>
@@ -81,12 +60,7 @@ export function Sidebar() {
         <TabsContent value="settings" className="flex-1 m-0">
           <ScrollArea className="h-full">
             <div className="p-4">
-              <h3 className="font-semibold mb-4">Configuración</h3>
-              <div className="space-y-2 text-sm">
-                <p><strong>Tenant:</strong> {tenant.name}</p>
-                <p><strong>Template:</strong> {tenant.template}</p>
-                <p><strong>Domain:</strong> {tenant.domain}</p>
-              </div>
+              <SettingsEditor />
             </div>
           </ScrollArea>
         </TabsContent>

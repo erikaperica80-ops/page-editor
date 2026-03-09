@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { subscribeWithSelector } from 'zustand/middleware';
-import { TenantConfig, Section, ComponentNode } from '@/types/schema';
+import { TenantConfig, Section, ComponentNode, ThemeConfig, SEOConfig, BrandingConfig, ContactConfig } from '@/types/schema';
 
 interface EditorState {
   tenant: TenantConfig | null;
@@ -21,6 +21,11 @@ interface EditorActions {
   updateSectionVisibility: (sectionId: string, visible: boolean) => void;
   updateSectionOrder: (sections: Section[]) => void;
   setPreviewUrl: (url: string) => void;
+  updateTheme: (theme: Partial<ThemeConfig>) => void;
+  updateSEO: (seo: Partial<SEOConfig>) => void;
+  updateBranding: (branding: Partial<BrandingConfig>) => void;
+  updateContact: (contact: Partial<ContactConfig>) => void;
+  updateTenantInfo: (info: { name?: string; domain?: string }) => void;
   resetChanges: () => void;
   saveChanges: () => Promise<void>;
 }
@@ -161,6 +166,36 @@ export const useEditorStore = create<EditorStore>()(
     },
 
     setPreviewUrl: (url) => set({ previewUrl: url }),
+
+    updateTheme: (theme) => {
+      const { tenant } = get();
+      if (!tenant) return;
+      set({ tenant: { ...tenant, theme: { ...tenant.theme, ...theme } }, isDirty: true });
+    },
+
+    updateSEO: (seo) => {
+      const { tenant } = get();
+      if (!tenant) return;
+      set({ tenant: { ...tenant, seo: { ...tenant.seo, ...seo } }, isDirty: true });
+    },
+
+    updateBranding: (branding) => {
+      const { tenant } = get();
+      if (!tenant) return;
+      set({ tenant: { ...tenant, branding: { ...tenant.branding, ...branding } }, isDirty: true });
+    },
+
+    updateContact: (contact) => {
+      const { tenant } = get();
+      if (!tenant) return;
+      set({ tenant: { ...tenant, contact: { ...tenant.contact, ...contact } }, isDirty: true });
+    },
+
+    updateTenantInfo: (info) => {
+      const { tenant } = get();
+      if (!tenant) return;
+      set({ tenant: { ...tenant, ...info }, isDirty: true });
+    },
 
     resetChanges: () => set({ isDirty: false }),
 
